@@ -1,0 +1,29 @@
+{
+  "name": "react-native-karte-tracker",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plaidev/react-native-karte-tracker.git"
+  },
+  "homepage": "https://karte.io",
+  "version": "0.0.1",
+  "description": "KARTE SDK for React Native.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "karte",
+    "react-native",
+    "ios",
+    "android",
+    "push",
+    "notification",
+    "in-app",
+    "analytics",
+    "segmentation"
+  ],
+  "author": "PLAID, Inc.",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  }
+}
