@@ -32,7 +32,7 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
         maven {
-            url 'http://plaidev.github.io/karte-tracker-android/maven-repo'
+            url 'https://plaidev.github.io/karte-tracker-android/maven-repo'
         }
     }
 }

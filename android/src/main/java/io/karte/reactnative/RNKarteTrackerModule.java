@@ -32,13 +32,13 @@ public class RNKarteTrackerModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getAppKey(Callback callback) {
     String appKey = getDefaultTracker().getAppKey();
-    callback.invoke(null, appKey);
+    callback.invoke(appKey);
   }
 
   @ReactMethod
   public void getVisitorId(Callback callback) {
     String visitorId = getDefaultTracker().getVisitorId();
-    callback.invoke(null, visitorId);
+    callback.invoke(visitorId);
   }
 
   @ReactMethod
@@ -68,7 +68,7 @@ public class RNKarteTrackerModule extends ReactContextBaseJavaModule {
   public void appendUserSyncQueryParameter(String url, Callback callback) {
     String appKey = getDefaultTracker().getAppKey();
     String newURL = TrackerJsUtil.appendUserSyncQueryParameter(getReactApplicationContext(), appKey, url);
-    callback.invoke(null, newURL);
+    callback.invoke(newURL);
   }
 
   private Tracker getDefaultTracker() {

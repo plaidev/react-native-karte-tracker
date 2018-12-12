@@ -22,13 +22,13 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(getAppKey:(RCTResponseSenderBlock)callback)
 {
     NSString *appKey = [[KarteTracker sharedTracker] appKey];
-    callback(@[[NSNull null], appKey]);
+    callback(@[appKey]);
 }
 
 RCT_EXPORT_METHOD(getVisitorId:(RCTResponseSenderBlock)callback)
 {
     NSString *visitorId = [[KarteTracker sharedTracker] visitorId];
-    callback(@[[NSNull null], visitorId]);
+    callback(@[visitorId]);
 }
 
 RCT_EXPORT_METHOD(track:(NSString *)eventName values:(NSDictionary *)values)
@@ -56,7 +56,8 @@ RCT_EXPORT_METHOD(appendUserSyncQueryParameter:(NSString *)url callback:(RCTResp
 {
     NSString *appKey = [[KarteTracker sharedTracker] appKey];
     NSString *newURL = [KarteTrackerJsUtil stringByAppendingUserSyncQueryParameter:appKey withURLString:url];
-    callback(@[[NSNull null], newURL]);
+    callback(@[newURL]);
 }
 
 @end
+
