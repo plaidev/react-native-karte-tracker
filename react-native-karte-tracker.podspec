@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
   s.source_files   = "ios/*.{h,m}"
 
   s.dependency "React"
-  s.dependency "KarteTracker", '~> 1.4.5'
+  s.dependency "KarteTracker", '~> 1.6.4'
 end

@@ -5,11 +5,10 @@
     "url": "git+https://github.com/plaidev/react-native-karte-tracker.git"
   },
   "homepage": "https://karte.io",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "KARTE SDK for React Native.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
     "karte",
     "react-native",

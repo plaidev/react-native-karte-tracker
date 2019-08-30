@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import io.karte.android.tracker.Tracker;
 import io.karte.android.tracker.TrackerJsUtil;
+import io.karte.android.tracker.inappmessaging.InAppMessagingManager;
 
 public class RNKarteTrackerModule extends ReactContextBaseJavaModule {
 
@@ -61,6 +62,21 @@ public class RNKarteTrackerModule extends ReactContextBaseJavaModule {
     getDefaultTracker().trackFcmToken(fcmToken);
   }
 
+  @ReactMethod
+  public void optIn() {
+    getDefaultTracker().optIn();
+  }
+
+  @ReactMethod
+  public void optOut() {
+    getDefaultTracker().optOut();
+  }
+
+  @ReactMethod
+  public void renewVisitorId() {
+    getDefaultTracker().renewVisitorId();
+  }
+
   //
   // TrackerJsUtil
 
@@ -69,6 +85,30 @@ public class RNKarteTrackerModule extends ReactContextBaseJavaModule {
     String appKey = getDefaultTracker().getAppKey();
     String newURL = TrackerJsUtil.appendUserSyncQueryParameter(getReactApplicationContext(), appKey, url);
     callback.invoke(newURL);
+  }
+
+  //
+  // InAppMessagingManager
+
+  @ReactMethod
+  public void isPresenting(Callback callback) {
+    InAppMessagingManager manager = getDefaultTracker().getInAppMessagingManager();
+    callback.invoke(manager.isPresenting());
+  }
+
+  @ReactMethod
+  public void dismiss() {
+    getDefaultTracker().getInAppMessagingManager().dismiss();
+  }
+
+  @ReactMethod
+  public void suppress() {
+    getDefaultTracker().getInAppMessagingManager().suppress();
+  }
+
+  @ReactMethod
+  public void unsuppress() {
+    getDefaultTracker().getInAppMessagingManager().unsuppress();
   }
 
   private Tracker getDefaultTracker() {

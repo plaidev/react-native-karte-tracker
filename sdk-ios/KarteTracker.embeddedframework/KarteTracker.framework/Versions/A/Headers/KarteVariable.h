@@ -1,11 +1,13 @@
 //
-//  Variables.h
+//  KarteVariable.h
 //  KarteTracker
 //
-//  Created by rei.ishikawa on H30/08/20.
+//  Copyright (c) 2018 PLAID inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 
 @interface KarteVariable : NSObject
@@ -17,10 +19,12 @@
 @property (nonatomic, copy, readonly, nullable) NSArray *array;
 @property (nonatomic, copy, readonly, nullable) NSDictionary *dictionary;
 
-- (nonnull NSString *)stringWithDefaultValue:(nonnull NSString *)defaultValue NS_SWIFT_NAME(string(defaultValue:));
+- (NSString *)stringWithDefaultValue:(NSString *)defaultValue NS_SWIFT_NAME(string(defaultValue:));
 - (NSInteger)integerWithDefaultValue:(NSInteger)defaultValue NS_SWIFT_NAME(integer(defaultValue:));
 - (double)doubleWithDefaultValue:(double)defaultValue NS_SWIFT_NAME(double(defaultValue:));
 - (BOOL)boolWithDefaultValue:(BOOL)defaultValue NS_SWIFT_NAME(boolean(defaultValue:));
-- (nonnull NSArray *)arrayWithDefaultValue:(nonnull NSArray *)defaultValue NS_SWIFT_NAME(array(defaultValue:));
-- (nonnull NSDictionary *)dictionaryWithDefaultValue:(nonnull NSDictionary *)defaultValue NS_SWIFT_NAME(dictionary(defaultValue:));
+- (NSArray *)arrayWithDefaultValue:(NSArray *)defaultValue NS_SWIFT_NAME(array(defaultValue:));
+- (NSDictionary *)dictionaryWithDefaultValue:(NSDictionary *)defaultValue NS_SWIFT_NAME(dictionary(defaultValue:));
 @end
+
+NS_ASSUME_NONNULL_END

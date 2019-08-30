@@ -51,12 +51,49 @@ RCT_EXPORT_METHOD(registerFCMToken:(NSString *)fcmToken)
     [[KarteTracker sharedTracker] registerFCMToken:fcmToken];
 }
 
+RCT_EXPORT_METHOD(optIn)
+{
+    [[KarteTracker sharedTracker] optIn];
+}
+
+RCT_EXPORT_METHOD(optOut)
+{
+    [[KarteTracker sharedTracker] optOut];
+}
+
+RCT_EXPORT_METHOD(renewVisitorId)
+{
+    [[KarteTracker sharedTracker] renewVisitorId];
+}
+
 #pragma mark - KarteTrackerJsUtil
 RCT_EXPORT_METHOD(appendUserSyncQueryParameter:(NSString *)url callback:(RCTResponseSenderBlock)callback)
 {
     NSString *appKey = [[KarteTracker sharedTracker] appKey];
     NSString *newURL = [KarteTrackerJsUtil stringByAppendingUserSyncQueryParameter:appKey withURLString:url];
     callback(@[newURL]);
+}
+
+#pragma mark - KarteInAppMessagingManager
+RCT_EXPORT_METHOD(isPresenting:(RCTResponseSenderBlock)callback)
+{
+    BOOL isPresenting = [[KarteInAppMessagingManager sharedManager] isPresenting];
+    callback(@[@(isPresenting)]);
+}
+
+RCT_EXPORT_METHOD(dismiss)
+{
+    [[KarteInAppMessagingManager sharedManager] dismiss];
+}
+
+RCT_EXPORT_METHOD(suppress)
+{
+    [[KarteInAppMessagingManager sharedManager] suppress];
+}
+
+RCT_EXPORT_METHOD(unsuppress)
+{
+    [[KarteInAppMessagingManager sharedManager] unsuppress];
 }
 
 @end
