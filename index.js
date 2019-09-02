@@ -68,4 +68,5 @@ const KarteInAppMessagingManager = {
   }
 }
 
-export default { KarteTracker, KarteTrackerJsUtil, KarteInAppMessagingManager }
+export { KarteTracker, KarteTrackerJsUtil, KarteInAppMessagingManager }
+export default KarteTracker
