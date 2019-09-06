@@ -2,6 +2,28 @@
 platform :ios, '9.0'
 
 target 'Example' do
-  pod 'Firebase/Core'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Example
   pod 'Firebase/Messaging'
+
+  target 'ExampleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'Example-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Example-tvOS
+
+  target 'Example-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
 end
