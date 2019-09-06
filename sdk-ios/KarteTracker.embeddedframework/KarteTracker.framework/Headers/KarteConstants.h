@@ -2,7 +2,7 @@
 //  KarteConstants.h
 //  KarteTracker
 //
-//  Created by tomoki.koga on 2018/08/26.
+//  Copyright (c) 2018 PLAID inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

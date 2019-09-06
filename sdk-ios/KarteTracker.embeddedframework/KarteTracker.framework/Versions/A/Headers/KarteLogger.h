@@ -2,8 +2,10 @@
 //  KarteLogger.h
 //  KarteTracker
 //
-//  Created by tomoki.koga on 2018/08/23.
+//  Copyright (c) 2018 PLAID inc. All rights reserved.
 //
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, KarteLogLevel) {
     KarteLogLevelOff = 0,
@@ -16,7 +18,9 @@ typedef NS_ENUM(NSUInteger, KarteLogLevel) {
 
 
 @interface KarteLogger : NSObject <NSCopying>
-@property (class, strong, readonly, nonnull) KarteLogger *sharedLogger;
+@property (class, strong, readonly) KarteLogger *sharedLogger;
 @property (nonatomic, assign) KarteLogLevel logLevel;
 
 @end
+
+NS_ASSUME_NONNULL_END

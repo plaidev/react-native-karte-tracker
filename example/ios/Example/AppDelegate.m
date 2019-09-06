@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -7,12 +7,12 @@
 
 #import "AppDelegate.h"
 
-#import <UserNotifications/UserNotifications.h>
-
+#import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
 
+#import <UserNotifications/UserNotifications.h>
 #import <Firebase/Firebase.h>
 #import <KarteTracker/KarteTracker.h>
 
@@ -23,36 +23,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  // Initialize Push notification
-  if (@available(iOS 10.0, *)) {
-    UNUserNotificationCenter.currentNotificationCenter.delegate = self;
-    
-    UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
-    [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
-    }];
-  } else {
-    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [application registerUserNotificationSettings:settings];
-  }
-  
-  [application registerForRemoteNotifications];
-  
-  // Initialize Firebase SDK
-  [FIRApp configure];
-  
-  // Initialize KARTE SDK
-  [KarteTracker setupWithAppKey:@"YOUR_APP_KEY"];
-  
-  // Initialize React Native.
-  NSURL *jsCodeLocation;
+  [self setupApplication:application];
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"Example"
+                                            initialProperties:nil];
 
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"Example"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -61,6 +38,15 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+{
+#if DEBUG
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
+  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
@@ -83,6 +69,30 @@
   }
   
   completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)setupApplication:(UIApplication *)application
+{
+  // Initialize Push notification
+  if (@available(iOS 10.0, *)) {
+    UNUserNotificationCenter.currentNotificationCenter.delegate = self;
+    
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
+    [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+    }];
+  } else {
+    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [application registerUserNotificationSettings:settings];
+  }
+  
+  [application registerForRemoteNotifications];
+  
+  // Initialize Firebase SDK
+  [FIRApp configure];
+  
+  // Initialize KARTE SDK
+  [KarteTracker setupWithAppKey:@"YOUR_APP_KEY"];
 }
 
 #pragma mark - UNUserNotificationCenterDelegate
