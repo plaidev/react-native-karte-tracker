@@ -175,7 +175,12 @@ public class RNKarteTrackerModule extends ReactContextBaseJavaModule {
     String appKey = getDefaultTracker().getAppKey();
     Variable variable = Variables.getInstance(getReactApplicationContext(), appKey).getVariable(key);
 
-    callback.invoke(variable.getString(defaultValue));
+    String value = variable.getString(defaultValue);
+    if (value != null) {
+      callback.invoke(value);
+    } else {
+      callback.invoke();
+    }
   }
 
   @ReactMethod

@@ -115,7 +115,6 @@ RCT_EXPORT_METHOD(variable:(NSString *)key callback:(RCTResponseSenderBlock)call
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:key forKey:@"key"];
-    [dict setObject:@(variable.isDefined) forKey:@"is_defined"];
     
     if (variable.campaignId) {
         [dict setObject:variable.campaignId forKey:@"campaign_id"];
@@ -145,13 +144,8 @@ RCT_EXPORT_METHOD(trackVariables:(NSArray *)vals eventName:(NSString *)eventName
 #pragma mark - KarteVariable
 RCT_EXPORT_METHOD(stringForKey:(NSString *)key defaultValue:(NSString *)defaultValue callback:(RCTResponseSenderBlock)callback)
 {
-    NSString *value = nil;
     KarteVariable *variable = [KarteVariables variableForKey:key];
-    if (defaultValue) {
-        value = [variable stringWithDefaultValue:defaultValue];
-    } else {
-        value = [variable string];
-    }
+    NSString *value = [variable stringWithDefaultValue:defaultValue];
     
     NSMutableArray *returns = [NSMutableArray array];
     if (value) {
@@ -163,43 +157,29 @@ RCT_EXPORT_METHOD(stringForKey:(NSString *)key defaultValue:(NSString *)defaultV
 
 RCT_EXPORT_METHOD(integerForKey:(NSString *)key defaultValue:(NSInteger)defaultValue callback:(RCTResponseSenderBlock)callback)
 {
-    NSInteger value = 0;
     KarteVariable *variable = [KarteVariables variableForKey:key];
-    if (defaultValue) {
-        value = [variable integerWithDefaultValue:defaultValue];
-    }
+    NSInteger value = [variable integerWithDefaultValue:defaultValue];
     callback(@[@(value)]);
 }
 
 RCT_EXPORT_METHOD(doubleForKey:(NSString *)key defaultValue:(double)defaultValue callback:(RCTResponseSenderBlock)callback)
 {
-    double value = 0.0;
     KarteVariable *variable = [KarteVariables variableForKey:key];
-    if (defaultValue) {
-        value = [variable doubleWithDefaultValue:defaultValue];
-    }
+    double value = [variable doubleWithDefaultValue:defaultValue];
     callback(@[@(value)]);
 }
 
 RCT_EXPORT_METHOD(boolForKey:(NSString *)key defaultValue:(BOOL)defaultValue callback:(RCTResponseSenderBlock)callback)
 {
-    bool value = false;
     KarteVariable *variable = [KarteVariables variableForKey:key];
-    if (defaultValue) {
-        value = [variable boolWithDefaultValue:defaultValue];
-    }
+    bool value = [variable boolWithDefaultValue:defaultValue];
     callback(@[@(value)]);
 }
 
 RCT_EXPORT_METHOD(arrayForKey:(NSString *)key defaultValue:(NSArray *)defaultValue callback:(RCTResponseSenderBlock)callback)
 {
-    NSArray *value = nil;
     KarteVariable *variable = [KarteVariables variableForKey:key];
-    if (defaultValue) {
-        value = [variable arrayWithDefaultValue:defaultValue];
-    } else {
-        value = [variable array];
-    }
+    NSArray *value = [variable arrayWithDefaultValue:defaultValue];
     
     NSMutableArray *returns = [NSMutableArray array];
     if (value) {
@@ -211,13 +191,8 @@ RCT_EXPORT_METHOD(arrayForKey:(NSString *)key defaultValue:(NSArray *)defaultVal
 
 RCT_EXPORT_METHOD(objectForKey:(NSString *)key defaultValue:(NSDictionary *)defaultValue callback:(RCTResponseSenderBlock)callback)
 {
-    NSDictionary *value = nil;
     KarteVariable *variable = [KarteVariables variableForKey:key];
-    if (defaultValue) {
-        value = [variable dictionaryWithDefaultValue:defaultValue];
-    } else {
-        value = [variable dictionary];
-    }
+    NSDictionary *value = [variable dictionaryWithDefaultValue:defaultValue];
     
     NSMutableArray *returns = [NSMutableArray array];
     if (value) {
@@ -226,8 +201,6 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key defaultValue:(NSDictionary *)defa
     
     callback(returns);
 }
-
-
 
 @end
 

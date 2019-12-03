@@ -122,7 +122,6 @@ class KarteVariable {
     this.key = vals["key"]
     this.campaignId = vals["campaign_id"]
     this.shortenId = vals["shorten_id"]
-    this.isDefined = vals["is_defined"]
   }
 
   string(defaultValue, cb) {
