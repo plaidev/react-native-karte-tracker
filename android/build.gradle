@@ -28,5 +28,5 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'io.karte.android:tracker:1.7.0'
+    compile 'io.karte.android:tracker:1.7.1'
 }
