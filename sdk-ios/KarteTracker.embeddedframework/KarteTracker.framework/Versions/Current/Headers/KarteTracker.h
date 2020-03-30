@@ -50,12 +50,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KarteTracker (Track)
 - (void)track:(NSString *)eventName values:(nullable NSDictionary *)values;
+- (void)track:(NSString *)eventName values:(nullable NSDictionary *)values view:(nullable UIView *)view API_AVAILABLE(ios(13.0));
+;
 - (void)trackNotification:(NSDictionary *)userInfo;
 - (void)trackUncaughtException:(NSDictionary *)values;
 - (void)identify:(NSDictionary *)values;
+- (void)identify:(NSDictionary *)values view:(nullable UIView *)view API_AVAILABLE(ios(13.0));
+;
 - (void)view:(NSString *)viewName;
 - (void)view:(NSString *)viewName title:(NSString *)title;
 - (void)view:(NSString *)viewName title:(NSString *)title values:(nullable NSDictionary *)values;
+- (void)view:(NSString *)viewName title:(NSString *)title values:(nullable NSDictionary *)values view:(nullable UIView *)view API_AVAILABLE(ios(13.0));
 - (void)view:(NSString *)viewName values:(nullable NSDictionary *)values;
 
 #pragma clang diagnostic push
