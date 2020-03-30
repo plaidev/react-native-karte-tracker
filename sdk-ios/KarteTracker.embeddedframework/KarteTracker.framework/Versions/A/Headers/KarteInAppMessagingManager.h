@@ -16,11 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (class, nonatomic, strong, readonly) KarteInAppMessagingManager *sharedManager;
 @property (nonatomic, assign, readonly, getter=isPresenting) BOOL presenting;
 @property (nonatomic, weak) id<KarteInAppMessagingManagerDelegate> delegate;
-
 - (void)dismiss;
 - (void)suppress;
 - (void)unsuppress;
-
 @end
 
 @protocol KarteInAppMessagingManagerDelegate <NSObject>
